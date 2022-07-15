@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Animated, StyleSheet, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import BaseAuthClass from '../../BaseComponents/BaseAuthClass';
@@ -12,7 +12,7 @@ import {
 } from '../../core/selectors/AppThemeSelectors';
 import theme from '../../UI/theme';
 
-class ThemeToggle extends BaseAuthClass {
+class ThemeToggle extends Component {
   constructor(props) {
     super(props);
 
@@ -45,8 +45,6 @@ class ThemeToggle extends BaseAuthClass {
     this.props.appTheme === theme.dark
       ? this.toggleLightTheme()
       : this.toggleDarkTheme();
-
-    setTimeout(() => this.setAppRoot(), 500);
   }
   render() {
     const {appTheme} = this.props;

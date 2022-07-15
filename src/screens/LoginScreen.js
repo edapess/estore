@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -20,7 +20,7 @@ import LogInForm from './components/LogInForm';
 
 const {width, height} = Dimensions.get('screen');
 
-export class LoginScreen extends BaseAuthClass {
+export class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.formService = new FormService();

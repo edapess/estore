@@ -1,19 +1,15 @@
 import {
   Animated,
-  Button,
   Dimensions,
   StyleSheet,
   Text,
-  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {createProduct, getAllProducts} from '../core/actions/ProductsActions';
-import ThemeToggle from './components/ThemeToggle';
-import {productsArraySelector} from '../core/selectors/ProductsSelectors';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
+import ThemeToggle from './components/ThemeToggle';
 
 const {width, height} = Dimensions.get('screen');
 class CabinetScreen extends Component {

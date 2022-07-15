@@ -6,6 +6,7 @@ export const authDataSelector = createSelector(
   authStateSelector,
   authDetails => authDetails.auth,
 );
+
 export const isSignUpButtonDisabledSelector = createSelector(
   authStateSelector,
   authState => authState.signUpButtonIsDisabled,
@@ -22,6 +23,14 @@ export const isRegistrationLoadingSelector = createSelector(
 export const registrationStatusSelector = createSelector(
   authStateSelector,
   authState => authState.status,
+);
+export const registrationDataSelector = createSelector(
+  authStateSelector,
+  authState => authState.auth.data,
+);
+export const registrationTokenSelector = createSelector(
+  registrationDataSelector,
+  regData => regData.data,
 );
 export const registrationConfigSelector = createSelector(
   authStateSelector,

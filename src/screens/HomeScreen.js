@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {getAllProducts} from '../core/actions/ProductsActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
+import {registrationDataSelector} from '../core/selectors/AuthSelectors';
 import {
   isProductsLoadingSelector,
   productsArraySelector,
@@ -15,11 +23,65 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
   }
-  render() {
+  componentDidMount() {
+    this.props.getAllProducts();
+  }
+  renderLoading() {
     return (
       <View>
-        <Text>sdsd</Text>
+        <ActivityIndicator size="large" color="blue" />
       </View>
+    );
+  }
+  renderProductsError() {
+    const {productsErrorMessage} = this.props;
+    return (
+      <View>
+        <Text>{productsErrorMessage}</Text>
+      </View>
+    );
+  }
+  renderProducts() {
+    const {productsArray, appTheme} = this.props;
+    return productsArray.map(item => {
+      return (
+        <View
+          key={item._id}
+          style={{
+            ...styles.product_root,
+            backgroundColor: appTheme.gray.gray_8,
+          }}>
+          <Text
+            style={{
+              ...styles.product_text,
+              color: appTheme.gray.gray_1,
+            }}>
+            {item.title}
+          </Text>
+        </View>
+      );
+    });
+  }
+  renderData() {
+    const {productsArray, isProductsLoading} = this.props;
+    if (isProductsLoading) {
+      return this.renderLoading();
+    } else if (!isProductsLoading && productsArray.length > 0) {
+      return this.renderProducts();
+    } else {
+      return this.renderProductsError();
+    }
+  }
+  render() {
+    return (
+      <ScrollView
+        alwaysBounceHorizontal={false}
+        contentContainerStyle={{
+          ...styles.main_root,
+          backgroundColor: this.props.appTheme.gray.gray_2,
+        }}>
+        {this.renderData()}
+      </ScrollView>
     );
   }
 }
@@ -48,6 +110,7 @@ const mapStateToProps = state => {
     productsErrorMessage: ProductsErrorMessageSelector(state),
     productsArray: productsArraySelector(state),
     appTheme: appThemeSelector(state),
+    registrationInfo: registrationDataSelector(state),
   };
 };
 const mapDispatchToProps = dispacth => {

@@ -45,8 +45,9 @@ class RegistrationScreen extends Component {
     );
   }
   goToRegistration() {
-    const {navigation} = this.props;
-    navigation.replace(routNames.HOME_SCREEN);
+    const {navigation, userRegistration, signUpForm} = this.props;
+    userRegistration(signUpForm);
+    navigation.replace('TabNavigation');
   }
   goToLoginScreen() {
     const {navigation} = this.props;
@@ -74,8 +75,7 @@ class RegistrationScreen extends Component {
                 ? appTheme.gray.gray_8
                 : appTheme.gray.gray_2,
             }}
-            // onPress={() => this.goToRegistration()}
-          >
+            onPress={() => this.goToRegistration()}>
             <Text
               style={{
                 ...styles.button_text,

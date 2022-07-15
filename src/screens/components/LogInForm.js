@@ -42,6 +42,7 @@ export class LogInForm extends Component {
             color: appTheme.blue.blue_4,
           }}
           placeholder={inputObject.placeholder}
+          placeholderTextColor={appTheme.gray.gray_8}
           onChangeText={text => this.changeText(inputObject, text)}
           value={inputObject.value}
         />
