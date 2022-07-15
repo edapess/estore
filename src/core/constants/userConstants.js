@@ -1,0 +1,9 @@
+export const userConstants = {
+  //----- GET
+  GET_ALL_USERS: 'GET_ALL_USERS',
+  GET_SINGLE_USER: 'GET_SINGLE_USER',
+  //----- POST
+  ADD_USER: 'ADD_USER',
+  UPDATE_USER: 'UPDATE_USER',
+  DELETE_USER: 'DELETE_USER',
+};
