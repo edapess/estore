@@ -6,7 +6,7 @@ import routNames from './routNames';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 const Tab = createBottomTabNavigator();
 const TabNavigation = ({appTheme}) => {
   return (
@@ -14,26 +14,29 @@ const TabNavigation = ({appTheme}) => {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
-          let iconBackground;
           if (route.name === routNames.HOME_SCREEN) {
             iconName = 'home';
           } else if (route.name === routNames.CABINET_SCREEN) {
             iconName = 'user';
           }
           return (
-            <Icon
-              name={iconName}
-              size={24}
-              color={appTheme.gray.gray_8}
-              style={{fontWeight: '600'}}
-            />
+            <Icon name={iconName} size={24} color={appTheme.gray.gray_1} />
           );
+        },
+        tabBarLabel: ({focused, color}) => {
+          let label;
+          if (route.name === routNames.HOME_SCREEN) {
+            label = routNames.HOME_SCREEN;
+          } else if (route.name === routNames.CABINET_SCREEN) {
+            label = routNames.CABINET_SCREEN;
+          }
+          return <Text style={{color: appTheme.gray.gray_1}}>{label}</Text>;
         },
         tabBarBackground: () => (
           <View
             style={{
               ...styles.tabBar,
-              backgroundColor: appTheme.gray.gray_5,
+              backgroundColor: appTheme.gray.gray_8,
             }}
           />
         ),
