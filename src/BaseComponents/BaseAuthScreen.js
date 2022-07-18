@@ -7,8 +7,4 @@ export default class BaseAuthScreen extends React.Component {
   goToLoginScreen(navigation) {
     navigation.navigate(routNames.LOGIN_SCREEN);
   }
-  goToRegistration({navigation, userRegistration, signUpForm}) {
-    userRegistration(signUpForm);
-    navigation.replace('TabNavigation');
-  }
 }

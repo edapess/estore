@@ -44,6 +44,11 @@ export const canRegister = isFormCorrect => {
     };
   }
 };
+export const resetRegistrationForm = () => {
+  return {
+    type: authConstants.RESET_FORM,
+  };
+};
 //---------
 export const authLogIn = authObject => async dispatch => {
   try {

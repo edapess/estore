@@ -20,7 +20,7 @@ const TabNavigation = ({appTheme}) => {
             iconName = 'user';
           }
           return (
-            <Icon name={iconName} size={24} color={appTheme.gray.gray_1} />
+            <Icon name={iconName} size={24} color={appTheme.gray.gray_8} />
           );
         },
         tabBarLabel: ({focused, color}) => {
@@ -30,13 +30,17 @@ const TabNavigation = ({appTheme}) => {
           } else if (route.name === routNames.CABINET_SCREEN) {
             label = routNames.CABINET_SCREEN;
           }
-          return <Text style={{color: appTheme.gray.gray_1}}>{label}</Text>;
+          return (
+            <Text style={{color: appTheme.gray.gray_8, fontSize: 12}}>
+              {label}
+            </Text>
+          );
         },
         tabBarBackground: () => (
           <View
             style={{
               ...styles.tabBar,
-              backgroundColor: appTheme.gray.gray_8,
+              backgroundColor: appTheme.gray.gray_2,
             }}
           />
         ),

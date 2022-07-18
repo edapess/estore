@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {
   authRegistration,
   registrationFormChange,
+  resetRegistrationForm,
 } from '../core/actions/AuthActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import {
@@ -23,7 +24,6 @@ import {
   registrationErrorSelector,
   registrationStatusSelector,
 } from '../core/selectors/AuthSelectors';
-import routNames from '../navigation/routNames';
 import FormService from '../services/FormService';
 import RegistrationForm from './RegistrationForm';
 import BaseAuthScreen from '../BaseComponents/BaseAuthScreen';
@@ -37,6 +37,7 @@ class RegistrationScreen extends BaseAuthScreen {
   getForm() {
     return this.formService.getRegistrationForm(this.props.signUpForm);
   }
+
   renderinputRow(inputObject) {
     if (typeof inputObject === 'function') {
       return null;
@@ -44,6 +45,10 @@ class RegistrationScreen extends BaseAuthScreen {
     return (
       <RegistrationForm inputObject={inputObject} key={inputObject.index} />
     );
+  }
+  goToRegistration({navigation, userRegistration, signUpForm}) {
+    userRegistration(signUpForm);
+    navigation.navigate('registrationModal');
   }
 
   render() {
@@ -64,7 +69,7 @@ class RegistrationScreen extends BaseAuthScreen {
             this.renderinputRow(inputObject),
           )}
           <TouchableHighlight
-            disabled={isSignUpButtonDisabled}
+            disabled={false}
             style={{
               ...styles.button,
               backgroundColor: isSignUpButtonDisabled
@@ -89,10 +94,6 @@ class RegistrationScreen extends BaseAuthScreen {
               Already have an account? Sign in
             </Text>
           </TouchableHighlight>
-          <Text style={{...styles.error_text, color: appTheme.red.red_4}}>
-            {registrationError &&
-              'something went wrong through registration, please check form details'}
-          </Text>
         </View>
       </View>
     );
@@ -142,6 +143,7 @@ const mapDispatchToProps = dispatch => {
     userRegistration: userInfo => dispatch(authRegistration(userInfo)),
     registrationFormChange: (key, value) =>
       dispatch(registrationFormChange(key, value)),
+    resetForm: () => dispatch(resetRegistrationForm()),
   };
 };
 
