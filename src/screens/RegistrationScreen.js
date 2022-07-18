@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {
   authRegistration,
   registrationFormChange,
+  resetRegistrationForm,
 } from '../core/actions/AuthActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import {
@@ -23,12 +24,12 @@ import {
   registrationErrorSelector,
   registrationStatusSelector,
 } from '../core/selectors/AuthSelectors';
-import routNames from '../navigation/routNames';
 import FormService from '../services/FormService';
 import RegistrationForm from './RegistrationForm';
+import BaseAuthScreen from '../BaseComponents/BaseAuthScreen';
 const {width, height} = Dimensions.get('screen');
 
-class RegistrationScreen extends Component {
+class RegistrationScreen extends BaseAuthScreen {
   constructor(props) {
     super(props);
     this.formService = new FormService();
@@ -36,6 +37,7 @@ class RegistrationScreen extends Component {
   getForm() {
     return this.formService.getRegistrationForm(this.props.signUpForm);
   }
+
   renderinputRow(inputObject) {
     if (typeof inputObject === 'function') {
       return null;
@@ -44,15 +46,11 @@ class RegistrationScreen extends Component {
       <RegistrationForm inputObject={inputObject} key={inputObject.index} />
     );
   }
-  goToRegistration() {
-    const {navigation, userRegistration, signUpForm} = this.props;
+  goToRegistration({navigation, userRegistration, signUpForm}) {
     userRegistration(signUpForm);
-    navigation.replace('TabNavigation');
+    navigation.navigate('registrationModal');
   }
-  goToLoginScreen() {
-    const {navigation, registrationError} = this.props;
-    navigation.navigate(routNames.LOGIN_SCREEN);
-  }
+
   render() {
     const {
       appTheme,
@@ -71,14 +69,14 @@ class RegistrationScreen extends Component {
             this.renderinputRow(inputObject),
           )}
           <TouchableHighlight
-            disabled={isSignUpButtonDisabled}
+            disabled={false}
             style={{
               ...styles.button,
               backgroundColor: isSignUpButtonDisabled
                 ? appTheme.gray.gray_8
                 : appTheme.gray.gray_2,
             }}
-            onPress={() => this.goToRegistration()}>
+            onPress={() => this.goToRegistration(this.props)}>
             <Text
               style={{
                 ...styles.button_text,
@@ -90,16 +88,12 @@ class RegistrationScreen extends Component {
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={() => this.goToLoginScreen()}
+            onPress={() => this.goToLoginScreen(this.props.navigation)}
             underlayColor={appTheme.blue.blue_4}>
             <Text style={{...styles.signIn_text, color: appTheme.blue.blue_1}}>
               Already have an account? Sign in
             </Text>
           </TouchableHighlight>
-          <Text style={{...styles.error_text, color: appTheme.red.red_4}}>
-            {registrationError &&
-              'something went wrong through registration, please check form details'}
-          </Text>
         </View>
       </View>
     );
@@ -149,6 +143,7 @@ const mapDispatchToProps = dispatch => {
     userRegistration: userInfo => dispatch(authRegistration(userInfo)),
     registrationFormChange: (key, value) =>
       dispatch(registrationFormChange(key, value)),
+    resetForm: () => dispatch(resetRegistrationForm()),
   };
 };
 
