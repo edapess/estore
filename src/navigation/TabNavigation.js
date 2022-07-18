@@ -4,7 +4,7 @@ import CabinetScreen from '../screens/CabinetScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import routNames from './routNames';
-
+import {Icon} from 'react-native-vector-icons/AntDesign';
 const Tab = createBottomTabNavigator();
 const TabNavigation = () => {
   return (

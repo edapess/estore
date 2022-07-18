@@ -8,7 +8,9 @@ import LoginScreen from '../screens/LoginScreen';
 const Stack = createNativeStackNavigator();
 const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerShown: false}}>
       <Stack.Screen
         name={routNames.REGISTRATION_SCREEN}
         component={RegistrationScreen}

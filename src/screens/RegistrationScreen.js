@@ -5,7 +5,6 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
   TouchableHighlight,
   ActivityIndicator,
 } from 'react-native';
@@ -27,7 +26,6 @@ import {
 import routNames from '../navigation/routNames';
 import FormService from '../services/FormService';
 import RegistrationForm from './RegistrationForm';
-
 const {width, height} = Dimensions.get('screen');
 
 class RegistrationScreen extends Component {
@@ -47,41 +45,24 @@ class RegistrationScreen extends Component {
     );
   }
   goToRegistration() {
-    const {
-      navigation,
-      userRegistration,
-      registrationInfo,
-      signUpForm,
-      isRegistrationLoading,
-      registrationError,
-    } = this.props;
+    const {navigation, userRegistration, signUpForm} = this.props;
     userRegistration(signUpForm);
-    if (isRegistrationLoading) {
-      return (
-        <View>
-          <ActivityIndicator size={24} color="green" />
-        </View>
-      );
-    } else if (registrationError) {
-      return (
-        <View>
-          <Text>{registrationError}</Text>
-        </View>
-      );
-    } else {
-      navigation.replace('TabNavigation');
-    }
+    navigation.replace('TabNavigation');
   }
   goToLoginScreen() {
-    const {navigation} = this.props;
+    const {navigation, registrationError} = this.props;
     navigation.navigate(routNames.LOGIN_SCREEN);
   }
   render() {
-    const {appTheme, isSignUpButtonDisabled} = this.props;
-
+    const {
+      appTheme,
+      isSignUpButtonDisabled,
+      registrationError,
+      isRegistrationLoading,
+    } = this.props;
     return (
-      <ScrollView
-        contentContainerStyle={{
+      <View
+        style={{
           ...styles.root,
           backgroundColor: appTheme.blue.blue_4,
         }}>
@@ -108,13 +89,19 @@ class RegistrationScreen extends Component {
               Sign Up
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => this.goToLoginScreen()}>
+          <TouchableHighlight
+            onPress={() => this.goToLoginScreen()}
+            underlayColor={appTheme.blue.blue_4}>
             <Text style={{...styles.signIn_text, color: appTheme.blue.blue_1}}>
               Already have an account? Sign in
             </Text>
           </TouchableHighlight>
+          <Text style={{...styles.error_text, color: appTheme.red.red_4}}>
+            {registrationError &&
+              'something went wrong through registration, please check form details'}
+          </Text>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -140,6 +127,9 @@ const styles = StyleSheet.create({
   },
   signIn_text: {
     textDecorationLine: 'underline',
+    fontSize: 12,
+  },
+  error_text: {
     fontSize: 12,
   },
 });
