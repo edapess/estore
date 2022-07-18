@@ -26,9 +26,10 @@ import {
 import routNames from '../navigation/routNames';
 import FormService from '../services/FormService';
 import RegistrationForm from './RegistrationForm';
+import BaseAuthScreen from '../BaseComponents/BaseAuthScreen';
 const {width, height} = Dimensions.get('screen');
 
-class RegistrationScreen extends Component {
+class RegistrationScreen extends BaseAuthScreen {
   constructor(props) {
     super(props);
     this.formService = new FormService();
@@ -44,15 +45,7 @@ class RegistrationScreen extends Component {
       <RegistrationForm inputObject={inputObject} key={inputObject.index} />
     );
   }
-  goToRegistration() {
-    const {navigation, userRegistration, signUpForm} = this.props;
-    userRegistration(signUpForm);
-    navigation.replace('TabNavigation');
-  }
-  goToLoginScreen() {
-    const {navigation, registrationError} = this.props;
-    navigation.navigate(routNames.LOGIN_SCREEN);
-  }
+
   render() {
     const {
       appTheme,
@@ -78,7 +71,7 @@ class RegistrationScreen extends Component {
                 ? appTheme.gray.gray_8
                 : appTheme.gray.gray_2,
             }}
-            onPress={() => this.goToRegistration()}>
+            onPress={() => this.goToRegistration(this.props)}>
             <Text
               style={{
                 ...styles.button_text,
@@ -90,7 +83,7 @@ class RegistrationScreen extends Component {
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={() => this.goToLoginScreen()}
+            onPress={() => this.goToLoginScreen(this.props.navigation)}
             underlayColor={appTheme.blue.blue_4}>
             <Text style={{...styles.signIn_text, color: appTheme.blue.blue_1}}>
               Already have an account? Sign in
