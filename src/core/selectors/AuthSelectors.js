@@ -4,7 +4,7 @@ const authStateSelector = state => state.auth;
 
 export const authDataSelector = createSelector(
   authStateSelector,
-  authDetails => authDetails.auth,
+  authState => authState.auth,
 );
 
 export const isSignUpButtonDisabledSelector = createSelector(

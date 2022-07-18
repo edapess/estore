@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
+  ActivityIndicator,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -19,6 +20,7 @@ import {
   authSignUpFormSelector,
   isRegistrationLoadingSelector,
   isSignUpButtonDisabledSelector,
+  registrationDataSelector,
   registrationErrorSelector,
   registrationStatusSelector,
 } from '../core/selectors/AuthSelectors';
@@ -45,16 +47,36 @@ class RegistrationScreen extends Component {
     );
   }
   goToRegistration() {
-    const {navigation, userRegistration, signUpForm} = this.props;
+    const {
+      navigation,
+      userRegistration,
+      registrationInfo,
+      signUpForm,
+      isRegistrationLoading,
+      registrationError,
+    } = this.props;
     userRegistration(signUpForm);
-    navigation.replace('TabNavigation');
+    if (isRegistrationLoading) {
+      return (
+        <View>
+          <ActivityIndicator size={24} color="green" />
+        </View>
+      );
+    } else if (registrationError) {
+      return (
+        <View>
+          <Text>{registrationError}</Text>
+        </View>
+      );
+    } else {
+      navigation.replace('TabNavigation');
+    }
   }
   goToLoginScreen() {
     const {navigation} = this.props;
     navigation.navigate(routNames.LOGIN_SCREEN);
   }
   render() {
-    console.log(this.props);
     const {appTheme, isSignUpButtonDisabled} = this.props;
 
     return (
@@ -129,6 +151,7 @@ const mapStateToProps = state => ({
   isRegistrationLoading: isRegistrationLoadingSelector(state),
   registrationStatus: registrationStatusSelector(state),
   registrationError: registrationErrorSelector(state),
+  registrationInfo: registrationDataSelector(state),
 });
 
 const mapDispatchToProps = dispatch => {
