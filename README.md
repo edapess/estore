@@ -21,63 +21,63 @@ First of all, sorry for my commits, many things happened when I started this pro
 
 ### Folder structure
 
-📦src
-┣ 📂ApiServices
-┃ ┣ 📜AuthApiService.js
-┃ ┣ 📜CartApiService.js
-┃ ┣ 📜CategoryApiService.js
-┃ ┣ 📜ProductsApiService.js
-┃ ┣ 📜ThemeApiService.js
-┃ ┗ 📜UserApiService.js
-┣ 📂BaseComponents
-┃ ┗ 📜BaseAuthScreen.js
-┣ 📂UI
-┃ ┗ 📜theme.js
-┣ 📂core
-┃ ┣ 📂actions
-┃ ┃ ┣ 📜AppThemeActions.js
-┃ ┃ ┣ 📜AuthActions.js
-┃ ┃ ┣ 📜CategoryActions.js
-┃ ┃ ┣ 📜ProductsActions.js
-┃ ┃ ┗ 📜UsersActions.js
-┃ ┣ 📂constants
-┃ ┃ ┣ 📜authConstants.js
-┃ ┃ ┣ 📜categoryConstants.js
-┃ ┃ ┣ 📜productConstants.js
-┃ ┃ ┣ 📜themeConstants.js
-┃ ┃ ┗ 📜userConstants.js
-┃ ┣ 📂reducers
-┃ ┃ ┣ 📜Auth.js
-┃ ┃ ┣ 📜Category.js
-┃ ┃ ┣ 📜Products.js
-┃ ┃ ┣ 📜SingleProduct.js
-┃ ┃ ┣ 📜User.js
-┃ ┃ ┣ 📜appTheme.js
-┃ ┃ ┣ 📜createdProduct.js
-┃ ┃ ┗ 📜index.js
-┃ ┣ 📂selectors
-┃ ┃ ┣ 📜AppThemeSelectors.js
-┃ ┃ ┣ 📜AuthSelectors.js
-┃ ┃ ┗ 📜ProductsSelectors.js
-┃ ┗ 📜store.js
-┣ 📂navigation
-┃ ┣ 📜StackNavigator.js
-┃ ┣ 📜TabNavigation.js
-┃ ┗ 📜routNames.js
-┣ 📂screens
-┃ ┣ 📂components
-┃ ┃ ┣ 📜LogInForm.js
-┃ ┃ ┗ 📜ThemeToggle.js
-┃ ┣ 📂modals
-┃ ┃ ┗ 📜registrationModal.js
-┃ ┣ 📜CabinetScreen.js
-┃ ┣ 📜CartScreen.js
-┃ ┣ 📜HomeScreen.js
-┃ ┣ 📜LoginScreen.js
-┃ ┣ 📜RegistrationForm.js
-┃ ┗ 📜RegistrationScreen.js
-┣ 📂services
-┃ ┣ 📜AppValidator.js
-┃ ┗ 📜FormService.js
-┗ 📂utils
-┃ ┗ 📜apiClient.js
+─src
+┠ 📂ApiServices
+│ ┠ 📜AuthApiService.js
+│ ┠ 📜CartApiService.js
+│ ┠ 📜CategoryApiService.js
+│ ┠ 📜ProductsApiService.js
+│ ┠ 📜ThemeApiService.js
+│ ┕ 📜UserApiService.js
+┠ 📂BaseComponents
+│ ┕ 📜BaseAuthScreen.js
+┠ 📂UI
+│ ┕ 📜theme.js
+┠ 📂core
+│ ┠ 📂actions
+│ │ ┠ 📜AppThemeActions.js
+│ │ ┠ 📜AuthActions.js
+│ │ ┠ 📜CategoryActions.js
+│ │ ┠ 📜ProductsActions.js
+│ │ ┕ 📜UsersActions.js
+│ ┠ 📂constants
+│ │ ┠ 📜authConstants.js
+│ │ ┠ 📜categoryConstants.js
+│ │ ┠ 📜productConstants.js
+│ │ ┠ 📜themeConstants.js
+│ │ ┕ 📜userConstants.js
+│ ┠ 📂reducers
+│ │ ┠ 📜Auth.js
+│ │ ┠ 📜Category.js
+│ │ ┠ 📜Products.js
+│ │ ┠ 📜SingleProduct.js
+│ │ ┠ 📜User.js
+│ │ ┠ 📜appTheme.js
+│ │ ┠ 📜createdProduct.js
+│ │ ┕ 📜index.js
+│ ┠ 📂selectors
+│ │ ┠ 📜AppThemeSelectors.js
+│ │ ┠ 📜AuthSelectors.js
+│ │ ┕ 📜ProductsSelectors.js
+│ ┕ 📜store.js
+┠ 📂navigation
+│ ┠ 📜StackNavigator.js
+│ ┠ 📜TabNavigation.js
+│ ┕ 📜routNames.js
+┠ 📂screens
+│ ┠ 📂components
+│ │ ┠ 📜LogInForm.js
+│ │ ┕ 📜ThemeToggle.js
+│ ┠ 📂modals
+│ │ ┕ 📜registrationModal.js
+│ ┠ 📜CabinetScreen.js
+│ ┠ 📜CartScreen.js
+│ ┠ 📜HomeScreen.js
+│ ┠ 📜LoginScreen.js
+│ ┠ 📜RegistrationForm.js
+│ ┕ 📜RegistrationScreen.js
+┠ 📂services
+│ ┠ 📜AppValidator.js
+│ ┕ 📜FormService.js
+┕ 📂utils
+│ ┕ 📜apiClient.js
