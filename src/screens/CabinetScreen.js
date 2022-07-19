@@ -12,14 +12,14 @@ import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import ThemeToggle from './components/ThemeToggle';
 import {FocusAwareStatusBar} from '../navigation/TabNavigation';
 import theme from '../UI/theme';
+import BaseAppliocationScreen from '../BaseComponents/BaseAppliocationScreen';
 
 const {width, height} = Dimensions.get('screen');
-class CabinetScreen extends Component {
+class CabinetScreen extends BaseAppliocationScreen {
   constructor(props) {
     super(props);
     this.bgAnimate = new Animated.Value(0);
   }
-  componentDidMount() {}
   render() {
     return (
       <Animated.View

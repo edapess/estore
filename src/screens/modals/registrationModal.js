@@ -47,7 +47,9 @@ class registrationModal extends Component {
           style={{
             ...styles.message_root,
           }}>
-          <Text style={styles.message}>Your Account is Ready</Text>
+          <Text style={{...styles.message, color: appTheme.gray.gray_8}}>
+            Your Account is Ready
+          </Text>
           <TouchableHighlight
             style={{...styles.button, backgroundColor: appTheme.blue.blue_4}}
             underlayColor={appTheme.blue.blue_4}

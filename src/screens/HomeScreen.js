@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {connect} from 'react-redux';
+import BaseAppliocationScreen from '../BaseComponents/BaseAppliocationScreen';
 import {getAllProducts} from '../core/actions/ProductsActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import {registrationDataSelector} from '../core/selectors/AuthSelectors';
@@ -18,60 +19,33 @@ import {
 } from '../core/selectors/ProductsSelectors';
 import {FocusAwareStatusBar} from '../navigation/TabNavigation';
 import theme from '../UI/theme';
+import ProductItem from './components/ProductItem';
 
 const {width, height} = Dimensions.get('screen');
 
-class HomeScreen extends Component {
+class HomeScreen extends BaseAppliocationScreen {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
     this.props.getAllProducts();
   }
-  renderLoading() {
-    return (
-      <View>
-        <ActivityIndicator size="large" color="blue" />
-      </View>
-    );
-  }
-  renderProductsError() {
-    const {productsErrorMessage} = this.props;
-    return (
-      <View>
-        <Text>{productsErrorMessage}</Text>
-      </View>
-    );
-  }
+
   renderProducts() {
     const {productsArray, appTheme} = this.props;
     return productsArray.map(item => {
-      return (
-        <View
-          key={item._id}
-          style={{
-            ...styles.product_root,
-            backgroundColor: appTheme.gray.gray_8,
-          }}>
-          <Text
-            style={{
-              ...styles.product_text,
-              color: appTheme.gray.gray_1,
-            }}>
-            {item.title}
-          </Text>
-        </View>
-      );
+      console.log(item);
+      return <ProductItem item={item} key={item._id} />;
     });
   }
   renderData() {
-    const {productsArray, isProductsLoading} = this.props;
+    const {productsArray, isProductsLoading, productsErrorMessage} = this.props;
     if (isProductsLoading) {
       return this.renderLoading();
     } else if (!isProductsLoading && productsArray.length > 0) {
       return this.renderProducts();
     } else {
-      return this.renderProductsError();
+      return this.renderProductsError(productsErrorMessage);
     }
   }
   render() {
