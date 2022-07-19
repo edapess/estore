@@ -6,4 +6,5 @@ export default {
   REGISTRATION_SCREEN: 'Registration Screen',
   REGISTRATION_FORM: 'REGISTRATION_FORM',
   LOGIN_SCREEN: 'Login Screen',
+  CABINET_DETAILS_SCREEN: 'Cabinet Details',
 };

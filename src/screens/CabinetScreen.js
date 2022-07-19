@@ -21,14 +21,14 @@ class CabinetScreen extends BaseAppliocationScreen {
     this.bgAnimate = new Animated.Value(0);
   }
   render() {
-    const {appTheme} = this.props;
+    const {appTheme, navigation} = this.props;
     return (
       <Animated.View
         style={{
           ...styles.root,
-          backgroundColor: this.props.appTheme.gray.gray_2,
+          backgroundColor: appTheme.gray.gray_2,
         }}>
-        {this.renderCabinetHeader(appTheme)}
+        {this.renderCabinetHeader(appTheme, navigation)}
         <View style={{...styles.content_root}}></View>
         <View style={{...styles.bottom_root}}></View>
 

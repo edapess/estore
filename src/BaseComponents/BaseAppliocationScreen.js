@@ -9,6 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
+import routNames from '../navigation/routNames';
 import ThemeToggle from '../screens/components/ThemeToggle';
 
 const {width, height} = Dimensions.get('screen');
@@ -17,11 +18,16 @@ export default class BaseApplicationScreen extends React.Component {
   constructor(props) {
     super(props);
   }
-  renderCabinetHeader(appTheme) {
+  renderCabinetHeader(appTheme, navigation) {
     return (
       <View style={{...styles.header_root}}>
         <ThemeToggle />
-        <Icon name="setting" size={24} color={appTheme.gray.gray_8} />
+        <Icon
+          name="setting"
+          size={24}
+          color={appTheme.gray.gray_8}
+          onPress={() => navigation.navigate(routNames.CABINET_DETAILS_SCREEN)}
+        />
       </View>
     );
   }
