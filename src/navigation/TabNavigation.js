@@ -31,7 +31,11 @@ const TabNavigation = ({appTheme}) => {
             label = routNames.CABINET_SCREEN;
           }
           return (
-            <Text style={{color: appTheme.gray.gray_8, fontSize: 12}}>
+            <Text
+              style={{
+                color: appTheme.gray.gray_8,
+                fontSize: 12,
+              }}>
               {label}
             </Text>
           );
@@ -44,6 +48,13 @@ const TabNavigation = ({appTheme}) => {
             }}
           />
         ),
+        headerStyle: {
+          backgroundColor: appTheme.gray.gray_2,
+        },
+        headerTitleStyle: {
+          color: appTheme.gray.gray_8,
+          fontSize: 18,
+        },
       })}>
       <Tab.Screen name={routNames.HOME_SCREEN} component={HomeScreen} />
       <Tab.Screen name={routNames.CABINET_SCREEN} component={CabinetScreen} />

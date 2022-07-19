@@ -69,7 +69,7 @@ class RegistrationScreen extends BaseAuthScreen {
             this.renderinputRow(inputObject),
           )}
           <TouchableHighlight
-            disabled={false}
+            disabled={isSignUpButtonDisabled}
             style={{
               ...styles.button,
               backgroundColor: isSignUpButtonDisabled

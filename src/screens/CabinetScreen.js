@@ -23,7 +23,7 @@ class CabinetScreen extends Component {
       <Animated.View
         style={{
           ...styles.root,
-          backgroundColor: this.props.appTheme.gray.gray_1,
+          backgroundColor: this.props.appTheme.gray.gray_2,
         }}>
         <ThemeToggle />
         <TouchableOpacity>

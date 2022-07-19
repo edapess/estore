@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   TouchableHighlight,
+  Dimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -23,42 +24,77 @@ import {
   registrationStatusSelector,
 } from '../../core/selectors/AuthSelectors';
 
+const {width, height} = Dimensions.get('screen');
+
 class registrationModal extends Component {
   constructor(props) {
     super(props);
   }
   renderInfo() {
-    const {
-      isRegistrationLoading,
-      registrationStatus,
-      registrationError,
-      navigation,
-      resetForm,
-    } = this.props;
+    const {isRegistrationLoading, registrationError, navigation, appTheme} =
+      this.props;
     if (isRegistrationLoading) {
       return <ActivityIndicator />;
     } else if (registrationError) {
-      return <Text>Something went wrong</Text>;
+      return (
+        <View style={styles.message_root}>
+          <Text style={styles.message}>Something went wrong</Text>
+        </View>
+      );
     } else {
       return (
-        <TouchableHighlight onPress={() => navigation.replace('TabNavigation')}>
-          <Text>Your Account is Ready, go to Home page</Text>
-        </TouchableHighlight>
+        <View
+          style={{
+            ...styles.message_root,
+          }}>
+          <Text style={styles.message}>Your Account is Ready</Text>
+          <TouchableHighlight
+            style={{...styles.button, backgroundColor: appTheme.blue.blue_4}}
+            underlayColor={appTheme.blue.blue_4}
+            onPress={() => navigation.replace('TabNavigation')}>
+            <Text style={styles.button_text}>Go to Home page</Text>
+          </TouchableHighlight>
+        </View>
       );
     }
   }
   render() {
-    return <View style={styles.root}>{this.renderInfo()}</View>;
+    const {appTheme} = this.props;
+    return (
+      <View style={{...styles.root, backgroundColor: appTheme.gray.gray_2}}>
+        {this.renderInfo()}
+      </View>
+    );
   }
 }
 const styles = StyleSheet.create({
   root: {
-    width: '80%',
-    height: '80%',
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
     backfaceVisibility: 'visible',
+  },
+  button: {
+    width: width * 0.6,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  button_text: {
+    fontSize: 18,
+  },
+  message: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
+  message_root: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: height * 0.3,
+    width: width * 0.8,
   },
 });
 const mapStateToProps = state => ({

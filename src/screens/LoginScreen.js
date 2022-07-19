@@ -50,7 +50,7 @@ export class LoginScreen extends Component {
             this.renderinputRow(inputObject),
           )}
           <TouchableHighlight
-            disabled={logInButtonIsDisabled}
+            disabled={false}
             style={{
               ...styles.button,
               backgroundColor: logInButtonIsDisabled

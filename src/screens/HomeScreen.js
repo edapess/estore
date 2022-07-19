@@ -73,7 +73,6 @@ class HomeScreen extends Component {
     }
   }
   render() {
-    console.log(this.props);
     return (
       <ScrollView
         alwaysBounceHorizontal={false}
