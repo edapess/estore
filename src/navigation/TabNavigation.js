@@ -6,8 +6,16 @@ import routNames from './routNames';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
-import {StyleSheet, Text, View} from 'react-native';
+import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import {useIsFocused} from '@react-navigation/native';
 const Tab = createBottomTabNavigator();
+
+export const FocusAwareStatusBar = props => {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+};
+
 const TabNavigation = ({appTheme}) => {
   return (
     <Tab.Navigator

@@ -10,6 +10,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import ThemeToggle from './components/ThemeToggle';
+import {FocusAwareStatusBar} from '../navigation/TabNavigation';
+import theme from '../UI/theme';
 
 const {width, height} = Dimensions.get('screen');
 class CabinetScreen extends Component {
@@ -25,6 +27,14 @@ class CabinetScreen extends Component {
           ...styles.root,
           backgroundColor: this.props.appTheme.gray.gray_2,
         }}>
+        <FocusAwareStatusBar
+          barStyle={
+            this.props.appTheme === theme.dark
+              ? 'light-content'
+              : 'dark-content'
+          }
+          backgroundColor={this.props.appTheme.gray.gray_2}
+        />
         <ThemeToggle />
         <TouchableOpacity>
           <Text>ds</Text>
