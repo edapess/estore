@@ -94,6 +94,7 @@ class RegistrationScreen extends BaseAuthScreen {
               Already have an account? Sign in
             </Text>
           </TouchableHighlight>
+          {this.renderDevButton(this.props)}
         </View>
       </View>
     );

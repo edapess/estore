@@ -1,11 +1,29 @@
 import React, {Component} from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
+import ThemeToggle from '../screens/components/ThemeToggle';
 
-export default class BaseApplicationClass extends React.Component {
+const {width, height} = Dimensions.get('screen');
+
+export default class BaseApplicationScreen extends React.Component {
   constructor(props) {
     super(props);
+  }
+  renderCabinetHeader(appTheme) {
+    return (
+      <View style={{...styles.header_root}}>
+        <ThemeToggle />
+        <Icon name="setting" size={24} color={appTheme.gray.gray_8} />
+      </View>
+    );
   }
   renderLoading() {
     return (
@@ -22,3 +40,13 @@ export default class BaseApplicationClass extends React.Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  header_root: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: height * 0.1,
+    width: width,
+    paddingHorizontal: 15,
+  },
+});
