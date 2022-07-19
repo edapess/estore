@@ -1,9 +1,9 @@
 export default {
-  CABINET_SCREEN: 'cabinetScreen',
-  HOME_SCREEN: 'homeScreen',
+  CABINET_SCREEN: 'Cabinet Screen',
+  HOME_SCREEN: 'Home Screen',
   THEME_TOGGLER: 'themeToggle',
-  CART_SCREEN: 'CART_SCREEN',
-  REGISTRATION_SCREEN: 'REGISTRATION_SCREEN',
+  CART_SCREEN: 'Cart Screen',
+  REGISTRATION_SCREEN: 'Registration Screen',
   REGISTRATION_FORM: 'REGISTRATION_FORM',
-  LOGIN_SCREEN: 'LOGIN_SCREEN',
+  LOGIN_SCREEN: 'Login Screen',
 };

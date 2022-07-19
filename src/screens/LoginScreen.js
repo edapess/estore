@@ -6,9 +6,9 @@ import {
   ScrollView,
   TouchableHighlight,
   View,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {connect} from 'react-redux';
-import BaseAuthClass from '../BaseComponents/BaseAuthClass';
 import {authLogIn} from '../core/actions/AuthActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import {
@@ -17,7 +17,7 @@ import {
 } from '../core/selectors/AuthSelectors';
 import FormService from '../services/FormService';
 import LogInForm from './components/LogInForm';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 const {width, height} = Dimensions.get('screen');
 
 export class LoginScreen extends Component {
@@ -40,8 +40,8 @@ export class LoginScreen extends Component {
   render() {
     const {appTheme, logInButtonIsDisabled} = this.props;
     return (
-      <ScrollView
-        contentContainerStyle={{
+      <View
+        style={{
           ...styles.root,
           backgroundColor: appTheme.blue.blue_4,
         }}>
@@ -50,7 +50,7 @@ export class LoginScreen extends Component {
             this.renderinputRow(inputObject),
           )}
           <TouchableHighlight
-            disabled={logInButtonIsDisabled}
+            disabled={false}
             style={{
               ...styles.button,
               backgroundColor: logInButtonIsDisabled
@@ -69,7 +69,17 @@ export class LoginScreen extends Component {
             </Text>
           </TouchableHighlight>
         </View>
-      </ScrollView>
+        <TouchableHighlight
+          underlayColor={appTheme.blue.blue_4}
+          onPress={() => this.props.navigation.goBack()}>
+          <Icon
+            name="leftcircle"
+            size={23}
+            color={appTheme.blue.blue_3}
+            style={{marginTop: 15}}
+          />
+        </TouchableHighlight>
+      </View>
     );
   }
 }

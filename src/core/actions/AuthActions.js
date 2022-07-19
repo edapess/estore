@@ -13,7 +13,10 @@ export const authRegistration = authObject => async dispatch => {
       payload: response,
     });
   } catch (error) {
-    dispatch({type: authConstants.USER_REGISTRATION_ERROR, error: error});
+    dispatch({
+      type: authConstants.USER_REGISTRATION_ERROR,
+      error: error.message,
+    });
   }
 };
 export const registrationFormChange = (inputObject, inputValue) => {
@@ -40,6 +43,11 @@ export const canRegister = isFormCorrect => {
       disabledToRegister: true,
     };
   }
+};
+export const resetRegistrationForm = () => {
+  return {
+    type: authConstants.RESET_FORM,
+  };
 };
 //---------
 export const authLogIn = authObject => async dispatch => {

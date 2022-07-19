@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Animated, StyleSheet, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import BaseAuthClass from '../../BaseComponents/BaseAuthClass';
 import {
   toggleDarkTheme,
   toggleLightTheme,

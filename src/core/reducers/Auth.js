@@ -5,7 +5,7 @@ const initialState = {
   signUpButtonIsDisabled: true,
   logInButtonIsDisabled: true,
   error: '',
-  loading: false,
+  loading: true,
   config: {},
   status: '',
   signUpForm: {
@@ -23,9 +23,27 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
+    case authConstants.RESET_FORM:
+      return {
+        ...state,
+        error: '',
+        status: '',
+        signUpForm: {
+          name: '',
+          email: '',
+          number: '',
+          password: '',
+          password_repeat: '',
+        },
+        logInForm: {
+          email: '',
+          password: '',
+        },
+      };
     case authConstants.SIGNUP_FORM_CHANGE:
       return {
         ...state,
+        error: '',
         signUpForm: {
           ...state.signUpForm,
           name:
@@ -49,7 +67,7 @@ const auth = (state = initialState, action) => {
               ? action.payload.inputValue
               : state.signUpForm.password_repeat,
         },
-        loading: false,
+        loading: true,
       };
     //------ IS ENABLE TO SEND REGISTRATION REQUEST
     case authConstants.SIGNUP_FORM_CORRECT:

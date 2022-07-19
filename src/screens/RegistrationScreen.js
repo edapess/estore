@@ -5,7 +5,6 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
   TouchableHighlight,
   ActivityIndicator,
 } from 'react-native';
@@ -13,6 +12,7 @@ import {connect} from 'react-redux';
 import {
   authRegistration,
   registrationFormChange,
+  resetRegistrationForm,
 } from '../core/actions/AuthActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import {
@@ -24,13 +24,12 @@ import {
   registrationErrorSelector,
   registrationStatusSelector,
 } from '../core/selectors/AuthSelectors';
-import routNames from '../navigation/routNames';
 import FormService from '../services/FormService';
 import RegistrationForm from './RegistrationForm';
-
+import BaseAuthScreen from '../BaseComponents/BaseAuthScreen';
 const {width, height} = Dimensions.get('screen');
 
-class RegistrationScreen extends Component {
+class RegistrationScreen extends BaseAuthScreen {
   constructor(props) {
     super(props);
     this.formService = new FormService();
@@ -38,6 +37,7 @@ class RegistrationScreen extends Component {
   getForm() {
     return this.formService.getRegistrationForm(this.props.signUpForm);
   }
+
   renderinputRow(inputObject) {
     if (typeof inputObject === 'function') {
       return null;
@@ -46,42 +46,21 @@ class RegistrationScreen extends Component {
       <RegistrationForm inputObject={inputObject} key={inputObject.index} />
     );
   }
-  goToRegistration() {
-    const {
-      navigation,
-      userRegistration,
-      registrationInfo,
-      signUpForm,
-      isRegistrationLoading,
-      registrationError,
-    } = this.props;
+  goToRegistration({navigation, userRegistration, signUpForm}) {
     userRegistration(signUpForm);
-    if (isRegistrationLoading) {
-      return (
-        <View>
-          <ActivityIndicator size={24} color="green" />
-        </View>
-      );
-    } else if (registrationError) {
-      return (
-        <View>
-          <Text>{registrationError}</Text>
-        </View>
-      );
-    } else {
-      navigation.replace('TabNavigation');
-    }
+    navigation.navigate('registrationModal');
   }
-  goToLoginScreen() {
-    const {navigation} = this.props;
-    navigation.navigate(routNames.LOGIN_SCREEN);
-  }
-  render() {
-    const {appTheme, isSignUpButtonDisabled} = this.props;
 
+  render() {
+    const {
+      appTheme,
+      isSignUpButtonDisabled,
+      registrationError,
+      isRegistrationLoading,
+    } = this.props;
     return (
-      <ScrollView
-        contentContainerStyle={{
+      <View
+        style={{
           ...styles.root,
           backgroundColor: appTheme.blue.blue_4,
         }}>
@@ -97,7 +76,7 @@ class RegistrationScreen extends Component {
                 ? appTheme.gray.gray_8
                 : appTheme.gray.gray_2,
             }}
-            onPress={() => this.goToRegistration()}>
+            onPress={() => this.goToRegistration(this.props)}>
             <Text
               style={{
                 ...styles.button_text,
@@ -108,13 +87,15 @@ class RegistrationScreen extends Component {
               Sign Up
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => this.goToLoginScreen()}>
+          <TouchableHighlight
+            onPress={() => this.goToLoginScreen(this.props.navigation)}
+            underlayColor={appTheme.blue.blue_4}>
             <Text style={{...styles.signIn_text, color: appTheme.blue.blue_1}}>
               Already have an account? Sign in
             </Text>
           </TouchableHighlight>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -142,6 +123,9 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: 12,
   },
+  error_text: {
+    fontSize: 12,
+  },
 });
 const mapStateToProps = state => ({
   appTheme: appThemeSelector(state),
@@ -159,6 +143,7 @@ const mapDispatchToProps = dispatch => {
     userRegistration: userInfo => dispatch(authRegistration(userInfo)),
     registrationFormChange: (key, value) =>
       dispatch(registrationFormChange(key, value)),
+    resetForm: () => dispatch(resetRegistrationForm()),
   };
 };
 
