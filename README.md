@@ -7,6 +7,7 @@ First of all, sorry for my commits, many things happened when I started this pro
 - [React Native](https://reactnative.dev/).
 - [Redux Toolkit](https://redux-toolkit.js.org/).
 - [React Redux](https://react-redux.js.org/).
+- [React Native Debugger](https://github.com/jhen0409/react-native-debugger)
 - [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons).
 - [React Navigation](https://reactnavigation.org/).
 - [React Navigation Bottom Tabs](https://reactnavigation.org/docs/bottom-tab-navigator/).
