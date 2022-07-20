@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {Dimensions, Text, View, StyleSheet, TextInput} from 'react-native';
 import {connect} from 'react-redux';
-import {canRegister, registrationFormChange} from '../core/actions/AuthActions';
-import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
-import {authSignUpFormSelector} from '../core/selectors/AuthSelectors';
-import FormService from '../services/FormService';
+import {
+  canRegister,
+  registrationFormChange,
+} from '../../core/actions/AuthActions';
+import {appThemeSelector} from '../../core/selectors/AppThemeSelectors';
+import {authSignUpFormSelector} from '../../core/selectors/AuthSelectors';
+import FormService from '../../services/FormService';
 
 const {width, height} = Dimensions.get('screen');
 

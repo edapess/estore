@@ -25,7 +25,7 @@ import {
   registrationStatusSelector,
 } from '../core/selectors/AuthSelectors';
 import FormService from '../services/FormService';
-import RegistrationForm from './RegistrationForm';
+import RegistrationForm from './components/RegistrationForm';
 import BaseAuthScreen from '../BaseComponents/BaseAuthScreen';
 const {width, height} = Dimensions.get('screen');
 
