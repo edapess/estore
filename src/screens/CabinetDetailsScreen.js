@@ -20,7 +20,7 @@ class CabinetDetailsScreen extends BaseApplicationScreen {
   }
   renderForm() {
     return Object.values(this.getForm()).map(item => {
-      return <CabinetForm item={item} />;
+      return <CabinetForm item={item} key={item.index} />;
     });
   }
   render() {
