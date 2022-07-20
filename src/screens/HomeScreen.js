@@ -1,12 +1,5 @@
-import React, {Component} from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React from 'react';
+import {Dimensions, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import BaseAppliocationScreen from '../BaseComponents/BaseAppliocationScreen';
 import {getAllProducts} from '../core/actions/ProductsActions';
@@ -21,7 +14,7 @@ import {FocusAwareStatusBar} from '../navigation/TabNavigation';
 import theme from '../UI/theme';
 import ProductItem from './components/ProductItem';
 
-const {width, height} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
 class HomeScreen extends BaseAppliocationScreen {
   constructor(props) {
@@ -32,9 +25,8 @@ class HomeScreen extends BaseAppliocationScreen {
   }
 
   renderProducts() {
-    const {productsArray, appTheme} = this.props;
+    const {productsArray} = this.props;
     return productsArray.map(item => {
-      console.log(item);
       return <ProductItem item={item} key={item._id} />;
     });
   }

@@ -117,4 +117,60 @@ export default class FormService {
     };
     return loginForm;
   }
+  getCabinetForm(form, targetInputIndex) {
+    let cabinetForm = {
+      name: {
+        index: 0,
+        name: 'name',
+        required: true,
+        value: form?.name,
+        label: 'name',
+        placeholder: 'please enter your name',
+      },
+      email: {
+        index: 1,
+        name: 'email',
+        required: true,
+        value: form?.email,
+        label: 'email',
+        placeholder: 'please enter your email',
+        validator: email => {
+          if (!email) {
+            return null;
+          }
+
+          if (this.validator.validateEmail(email)) {
+            return null;
+          } else {
+            return 'email is incorrect';
+          }
+        },
+      },
+      gender: {
+        index: 2,
+        name: 'gender',
+        required: true,
+        value: form?.gender,
+        label: 'gender',
+        placeholder: 'please enter your gender',
+      },
+      birthday: {
+        index: 3,
+        name: 'birthday',
+        required: true,
+        value: form?.gender,
+        label: 'birthday',
+        placeholder: '__ - __ - ____',
+      },
+      number: {
+        index: 4,
+        name: 'number',
+        required: true,
+        value: form?.number,
+        label: 'number',
+        placeholder: 'please enter your phone number',
+      },
+    };
+    return cabinetForm;
+  }
 }

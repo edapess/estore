@@ -6,27 +6,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
-import ThemeToggle from './components/ThemeToggle';
 import {FocusAwareStatusBar} from '../navigation/TabNavigation';
 import theme from '../UI/theme';
 import BaseAppliocationScreen from '../BaseComponents/BaseAppliocationScreen';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
+
 class CabinetScreen extends BaseAppliocationScreen {
   constructor(props) {
     super(props);
     this.bgAnimate = new Animated.Value(0);
   }
   render() {
+    const {appTheme, navigation} = this.props;
     return (
       <Animated.View
         style={{
           ...styles.root,
-          backgroundColor: this.props.appTheme.gray.gray_2,
+          backgroundColor: appTheme.gray.gray_2,
         }}>
+        {this.renderCabinetHeader(appTheme, navigation)}
+        <View style={{...styles.content_root}} />
+        <View style={{...styles.bottom_root}} />
+
         <FocusAwareStatusBar
           barStyle={
             this.props.appTheme === theme.dark
@@ -35,7 +40,6 @@ class CabinetScreen extends BaseAppliocationScreen {
           }
           backgroundColor={this.props.appTheme.gray.gray_2}
         />
-        <ThemeToggle />
         <TouchableOpacity>
           <Text>ds</Text>
         </TouchableOpacity>
@@ -45,10 +49,13 @@ class CabinetScreen extends BaseAppliocationScreen {
 }
 const styles = StyleSheet.create({
   root: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     height,
   },
+  header_root: {},
+  content_root: {},
+  bottom_root: {},
 });
 const mapStateToProps = state => {
   return {

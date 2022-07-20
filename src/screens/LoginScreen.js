@@ -3,10 +3,8 @@ import {
   Dimensions,
   StyleSheet,
   Text,
-  ScrollView,
   TouchableHighlight,
   View,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {authLogIn} from '../core/actions/AuthActions';
@@ -76,7 +74,7 @@ export class LoginScreen extends Component {
             name="leftcircle"
             size={23}
             color={appTheme.blue.blue_3}
-            style={{marginTop: 15}}
+            style={styles.goBack_button}
           />
         </TouchableHighlight>
       </View>
@@ -102,6 +100,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
+  },
+  goBack_button: {
+    marginTop: 15,
   },
 });
 const mapStateToProps = state => ({

@@ -3,14 +3,14 @@ import apiClient from '../utils/apiClient';
 class CategoryService {
   //----- GET ----
   getAllCategories = () => {
-   return apiClient().get('/categories');
+    return apiClient().get('/categories');
   };
   getSingleCategory = categoryId => {
     apiClient().get(`/categories/${categoryId}`);
   };
   // ----- POST ------
   addNewCategory = categoryName => {
- return   apiClient().post(
+    return apiClient().post(
       '/categories',
       {
         name: categoryName,
@@ -24,7 +24,7 @@ class CategoryService {
   };
   //----- UPDATE -----
   updateCategory = (categoryName, name) => {
-   return apiClient().put(
+    return apiClient().put(
       `/categories/${categoryName}`,
       {
         name: name,
