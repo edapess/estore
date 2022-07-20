@@ -160,7 +160,7 @@ export default class FormService {
         required: true,
         value: form?.gender,
         label: 'birthday',
-        placeholder: 'please enter your birth date',
+        placeholder: '__ - __ - ____',
       },
       number: {
         index: 4,
