@@ -8,7 +8,6 @@ import registrationModal from '../screens/modals/registrationModal';
 import CabinetDetailsScreen from '../screens/CabinetDetailsScreen';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
-import {View} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const StackNavigator = ({appTheme}) => {

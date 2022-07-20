@@ -6,15 +6,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
-import ThemeToggle from './components/ThemeToggle';
 import {FocusAwareStatusBar} from '../navigation/TabNavigation';
 import theme from '../UI/theme';
 import BaseAppliocationScreen from '../BaseComponents/BaseAppliocationScreen';
-import Icon from 'react-native-vector-icons/AntDesign';
-const {width, height} = Dimensions.get('screen');
+
+const {height} = Dimensions.get('screen');
+
 class CabinetScreen extends BaseAppliocationScreen {
   constructor(props) {
     super(props);
@@ -29,8 +29,8 @@ class CabinetScreen extends BaseAppliocationScreen {
           backgroundColor: appTheme.gray.gray_2,
         }}>
         {this.renderCabinetHeader(appTheme, navigation)}
-        <View style={{...styles.content_root}}></View>
-        <View style={{...styles.bottom_root}}></View>
+        <View style={{...styles.content_root}} />
+        <View style={{...styles.bottom_root}} />
 
         <FocusAwareStatusBar
           barStyle={

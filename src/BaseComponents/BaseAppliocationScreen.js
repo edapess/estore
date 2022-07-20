@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -7,8 +7,6 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {connect} from 'react-redux';
-import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import routNames from '../navigation/routNames';
 import ThemeToggle from '../screens/components/ThemeToggle';
 

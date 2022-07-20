@@ -1,10 +1,9 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import BaseApplicationScreen from '../BaseComponents/BaseAppliocationScreen';
 import {cabinetFormChange} from '../core/actions/CabinetActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
-import {cabinetDetailsFormSelector} from '../core/selectors/CabinetSelectors';
 import FormService from '../services/FormService';
 import CabinetForm from './components/CabinetForm';
 
@@ -20,14 +19,13 @@ class CabinetDetailsScreen extends BaseApplicationScreen {
     return this.formService.getCabinetForm(cabinetDetailsForm);
   }
   renderForm() {
-    const {appTheme, cabinetDetailsChange} = this.props;
     return Object.values(this.getForm()).map(item => {
       return <CabinetForm item={item} />;
     });
   }
   render() {
     console.log(this.props);
-    const {appTheme, cabinetDetailsForm} = this.props;
+    const {appTheme} = this.props;
     return (
       <View style={{...styles.root, backgroundColor: appTheme.gray.gray_2}}>
         <View style={styles.inputs_root}>{this.renderForm()}</View>

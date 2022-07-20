@@ -4,17 +4,18 @@ import {connect} from 'react-redux';
 import {cabinetFormChange} from '../../core/actions/CabinetActions';
 import {appThemeSelector} from '../../core/selectors/AppThemeSelectors';
 
-const {width, height} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
-const CabinetForm = ({appTheme, item, changeDetail, cabinetDetailsChange}) => {
+const CabinetForm = ({appTheme, item, cabinetDetailsChange}) => {
   return (
     <TextInput
       value={item.value}
       placeholder={item.placeholder}
+      placeholderTextColor={appTheme.gray.gray_8}
       onChangeText={text => cabinetDetailsChange(item, text)}
       style={{
         ...styles.input,
-        backgroundColor: appTheme.gray.gray_5,
+        backgroundColor: appTheme.gray.gray_3,
         color: appTheme.blue.blue_4,
       }}
     />

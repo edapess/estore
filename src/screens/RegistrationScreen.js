@@ -50,12 +50,7 @@ class RegistrationScreen extends BaseAuthScreen {
   }
 
   render() {
-    const {
-      appTheme,
-      isSignUpButtonDisabled,
-      registrationError,
-      isRegistrationLoading,
-    } = this.props;
+    const {appTheme, isSignUpButtonDisabled} = this.props;
     return (
       <View
         style={{
