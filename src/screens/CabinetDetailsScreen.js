@@ -19,8 +19,11 @@ class CabinetDetailsScreen extends BaseApplicationScreen {
     return this.formService.getCabinetForm(cabinetDetailsForm);
   }
   renderForm() {
+    const {navigation} = this.props;
     return Object.values(this.getForm()).map(item => {
-      return <CabinetForm item={item} key={item.index} />;
+      return (
+        <CabinetForm item={item} key={item.index} navigation={navigation} />
+      );
     });
   }
   render() {
