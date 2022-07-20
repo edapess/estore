@@ -2,6 +2,7 @@ import React from 'react';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import BaseApplicationScreen from '../BaseComponents/BaseAppliocationScreen';
+import {cabinetFormChange} from '../core/actions/CabinetActions';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
 import {cabinetDetailsFormSelector} from '../core/selectors/CabinetSelectors';
 import FormService from '../services/FormService';
@@ -15,12 +16,13 @@ class CabinetDetailsScreen extends BaseApplicationScreen {
     this.formService = new FormService();
   }
   getForm() {
-    return this.formService.getCabinetForm();
+    const {cabinetDetailsForm} = this.props;
+    return this.formService.getCabinetForm(cabinetDetailsForm);
   }
   renderForm() {
-    const {appTheme, cabinetDetailsForm} = this.props;
+    const {appTheme, cabinetDetailsChange} = this.props;
     return Object.values(this.getForm()).map(item => {
-      return <CabinetForm appTheme={appTheme} item={item} />;
+      return <CabinetForm item={item} />;
     });
   }
   render() {
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
     height: height,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: 15,
   },
   inputs_root: {
     height: height * 0.3,
@@ -48,11 +51,12 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     appTheme: appThemeSelector(state),
-    cabinetDetailsForm: cabinetDetailsFormSelector(state),
   };
 };
 const mapDispatchToProps = dispacth => {
-  return {};
+  return {
+    cabinetDetailsChange: (obj, text) => dispacth(cabinetFormChange(obj, text)),
+  };
 };
 
 export default connect(
