@@ -39,11 +39,7 @@ const TabNavigation = ({appTheme}) => {
             label = routNames.CABINET_SCREEN;
           }
           return (
-            <Text
-              style={{
-                color: appTheme.gray.gray_8,
-                fontSize: 12,
-              }}>
+            <Text style={{...styles.tabBar_label, color: appTheme.gray.gray_8}}>
               {label}
             </Text>
           );
@@ -74,6 +70,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  tabBar_label: {fontSize: 12},
 });
 const mapStateToProps = state => ({
   appTheme: appThemeSelector(state),

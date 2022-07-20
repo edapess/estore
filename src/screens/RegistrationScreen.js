@@ -1,4 +1,3 @@
-import {Component} from 'react';
 import * as React from 'react';
 import {
   Dimensions,
@@ -6,7 +5,6 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  ActivityIndicator,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -25,7 +23,7 @@ import {
   registrationStatusSelector,
 } from '../core/selectors/AuthSelectors';
 import FormService from '../services/FormService';
-import RegistrationForm from './RegistrationForm';
+import RegistrationForm from './components/RegistrationForm';
 import BaseAuthScreen from '../BaseComponents/BaseAuthScreen';
 const {width, height} = Dimensions.get('screen');
 
@@ -52,12 +50,7 @@ class RegistrationScreen extends BaseAuthScreen {
   }
 
   render() {
-    const {
-      appTheme,
-      isSignUpButtonDisabled,
-      registrationError,
-      isRegistrationLoading,
-    } = this.props;
+    const {appTheme, isSignUpButtonDisabled} = this.props;
     return (
       <View
         style={{
@@ -94,6 +87,7 @@ class RegistrationScreen extends BaseAuthScreen {
               Already have an account? Sign in
             </Text>
           </TouchableHighlight>
+          {this.renderDevButton(this.props)}
         </View>
       </View>
     );
