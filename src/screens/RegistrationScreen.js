@@ -1,4 +1,3 @@
-import {Component} from 'react';
 import * as React from 'react';
 import {
   Dimensions,
@@ -6,7 +5,6 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  ActivityIndicator,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {

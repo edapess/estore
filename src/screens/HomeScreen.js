@@ -34,7 +34,6 @@ class HomeScreen extends BaseAppliocationScreen {
   renderProducts() {
     const {productsArray, appTheme} = this.props;
     return productsArray.map(item => {
-      console.log(item);
       return <ProductItem item={item} key={item._id} />;
     });
   }
