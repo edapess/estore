@@ -32,7 +32,7 @@ class cabinetFormChangeModal extends Component {
     const {appTheme} = this.props;
     return (
       <View style={{...styles.root, backgroundColor: appTheme.gray.gray_2}}>
-        {this.renderForm()}
+        <View style={{...styles.input_root}}>{this.renderForm()}</View>
       </View>
     );
   }
@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 15,
+  },
+  input_root: {
+    height: height * 0.3,
+    justifyContent: 'space-between',
   },
   input: {
     width: width * 0.8,
