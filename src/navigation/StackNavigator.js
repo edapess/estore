@@ -8,6 +8,7 @@ import registrationModal from '../screens/modals/registrationModal';
 import CabinetDetailsScreen from '../screens/CabinetDetailsScreen';
 import {connect} from 'react-redux';
 import {appThemeSelector} from '../core/selectors/AppThemeSelectors';
+import cabinetFormChangeModal from '../screens/modals/cabinetFormChangeModal';
 
 const Stack = createNativeStackNavigator();
 const StackNavigator = ({appTheme}) => {
@@ -41,6 +42,7 @@ const StackNavigator = ({appTheme}) => {
       </Stack.Group>
       <Stack.Group screenOptions={{presentation: 'modal'}}>
         <Stack.Screen name="registrationModal" component={registrationModal} />
+        <Stack.Screen name="cabinetModal" component={cabinetFormChangeModal} />
       </Stack.Group>
     </Stack.Navigator>
   );

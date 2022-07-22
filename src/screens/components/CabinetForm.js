@@ -6,13 +6,20 @@ import {appThemeSelector} from '../../core/selectors/AppThemeSelectors';
 
 const {width} = Dimensions.get('screen');
 
-const CabinetForm = ({appTheme, item, cabinetDetailsChange}) => {
+const CabinetForm = ({
+  appTheme,
+  cabinetDetailsChange,
+  item,
+  navigation,
+  cabinetDetailsForm,
+}) => {
   return (
     <TextInput
       value={item.value}
       placeholder={item.placeholder}
       placeholderTextColor={appTheme.gray.gray_8}
       onChangeText={text => cabinetDetailsChange(item, text)}
+      onPressIn={() => navigation.navigate('cabinetModal')}
       style={{
         ...styles.input,
         backgroundColor: appTheme.gray.gray_3,
