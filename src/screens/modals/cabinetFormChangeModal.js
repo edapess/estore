@@ -12,8 +12,11 @@ class cabinetFormChangeModal extends Component {
     this.formService = new FormService();
   }
   getForm() {
-    const {cabinetDetailsForm} = this.props;
-    return this.formService.getCabinetForm(cabinetDetailsForm);
+    const {cabinetDetailsForm, route} = this.props;
+    return this.formService.getCabinetForm(
+      cabinetDetailsForm,
+      route.params.targetInput,
+    );
   }
   renderForm() {
     const {navigation, cabinetDetailsForm} = this.props;

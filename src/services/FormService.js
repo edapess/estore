@@ -126,6 +126,7 @@ export default class FormService {
         value: form?.name,
         label: 'name',
         placeholder: 'please enter your name',
+        autoFocus: targetInputIndex === 0 ? true : false,
       },
       email: {
         index: 1,
@@ -145,6 +146,7 @@ export default class FormService {
             return 'email is incorrect';
           }
         },
+        autoFocus: targetInputIndex === 1 ? true : false,
       },
       gender: {
         index: 2,
@@ -153,6 +155,7 @@ export default class FormService {
         value: form?.gender,
         label: 'gender',
         placeholder: 'please enter your gender',
+        autoFocus: targetInputIndex === 2 ? true : false,
       },
       birthday: {
         index: 3,
@@ -161,6 +164,7 @@ export default class FormService {
         value: form?.gender,
         label: 'birthday',
         placeholder: '__ - __ - ____',
+        autoFocus: targetInputIndex === 3 ? true : false,
       },
       number: {
         index: 4,
@@ -169,6 +173,7 @@ export default class FormService {
         value: form?.number,
         label: 'number',
         placeholder: 'please enter your phone number',
+        autoFocus: targetInputIndex === 4 ? true : false,
       },
     };
     return cabinetForm;
